@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Craft Alchemy provides innovative AI solutions to transform your business. Explore our custom AI services, data analytics, and process automation.">
+    <title>AI Craft Alchemy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #f5f5f5;
+            --accent-color: #ffc107;
+            --text-color: #333;
+            --bg-color: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --hover-color: #3f51b5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(26, 35, 126, 0.9);
+            color: var(--bg-color);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(26, 35, 126, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 60px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--bg-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.9), rgba(63, 81, 181, 0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.7s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.9s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background-color: #ffd54f;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            padding: 80px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 25%;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            background-color: var(--secondary-color);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-text h3 {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            flex-basis: calc(50% - 15px);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service {
+            background-color: var(--bg-color);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .service:hover::before {
+            opacity: 1;
+            transform: translate(25%, 25%);
+        }
+
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service:hover .service-icon {
+            transform: scale(1.2) rotate(-10deg);
+        }
+
+        .service h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.5em;
+        }
+
+        .service p {
+            color: var(--text-color);
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .service-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .service-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+        }
+
+        .skills {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f6f9fc 0%, #f1f4f8 100%);
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .skill-item {
+            text-align: center;
+            margin: 20px;
+            transition: all 0.5s ease;
+            background-color: var(--bg-color);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .skill-item:hover::before {
+            opacity: 1;
+            transform: translate(25%, 25%);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-15px) rotate(3deg);
+        }
+
+        .skill-icon {
+            font-size: 3.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            transition: all 0.5s ease;
+        }
+
+        .skill-item:hover .skill-icon {
+            transform: scale(1.2) rotate(-10deg);
+            color: var(--accent-color);
+        }
+
+        .skill-name {
+            font-weight: 700;
+            font-size: 1.2em;
+            color: var(--primary-color);
+            opacity: 0.8;
+            transition: all 0.5s ease;
+        }
+
+        .skill-item:hover .skill-name {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .contact {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 80%);
+            animation: ripple 15s linear infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50%, 50%);
+            }
+        }
+
+        .contact h2 {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact p {
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact a:hover {
+            color: #ffd54f;
+        }
+
+        footer {
+            background-color: #0e1442;
+            color: var(--bg-color);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .social-icons {
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            color: var(--bg-color);
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .feature-item {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-VZLVJkeJI9RyKGq0pT9kGZG5vb6hzD.png" alt="AI Craft Alchemy Logo">
+                <h1>AI Craft Alchemy</h1>
+            </div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="projects.html">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content animate__animated animate__zoomIn">
+            <h2 id="typing-text"></h2>
+            <p>Transforming ideas into cutting-edge AI solutions</p>
+            <a href="#contact" class="btn animate__animated animate__pulse animate__infinite">Get Started</a>
+        </div>
+    </section>
+
+    <main class="container">
+        <section id="about" class="section">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-content animate__animated animate__fadeIn">
+                <div class="about-text">
+                    <h3>Pioneering AI Solutions</h3>
+                    <p>Welcome to AI Craft Alchemy, where we transform raw data into golden insights. Our team of expert alchemists specializes in the art and science of Artificial Intelligence, Machine Learning, and Deep Learning.</p>
+                    <p>Just as ancient alchemists sought to turn base metals into gold, we transmute complex data into valuable knowledge, empowering businesses and individuals to make informed decisions and drive innovation.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-flask"></i></div>
+                            <span>AI Experimentation</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-magic"></i></div>
+                            <span>Data Transformation</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                            <span>Knowledge Distillation</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                            <span>Innovation Catalyst</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI Team Collaboration">
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="services">
+                <div class="service animate__animated animate__fadeInUp">
+                    <div class="service-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Artificial Intelligence</h3>
+                    <p>We develop cutting-edge AI solutions to address your specific challenges and opportunities, leveraging the latest advancements in machine learning and deep learning.</p>
+                    <a href="ai.html" class="btn animate__animated animate__pulse animate__infinite">Learn More</a>
+                </div>
+                <div class="service animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="service-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Machine Learning</h3>
+                    <p>Our machine learning services help you make data-driven decisions by extracting valuable insights from your data, enabling predictive analytics and pattern recognition.</p>
+                    <a href="ml.html" class="btn animate__animated animate__pulse animate__infinite">Learn More</a>
+                </div>
+                <div class="service animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Deep Learning</h3>
+                    <p>We utilize deep learning techniques to automate complex tasks and processes, increasing efficiency and reducing operational costs through neural network architectures.</p>
+                    <a href="#contact" class="btn animate__animated animate__pulse animate__infinite">Learn More</a>
+                </div>
+                <div class="service animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+                    <div class="service-icon"><i class="fas fa-keyboard"></i></div>
+                    <h3>Prompt Engineering</h3>
+                    <p>Our prompt engineering services help you create effective prompts for AI models, optimizing their performance and ensuring accurate outputs tailored to your specific use cases.</p>
+                    <a href="#contact" class="btn animate__animated animate__pulse animate__infinite">Learn More</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="skills" class="skills section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-item animate__animated animate__zoomIn">
+                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                    <div class="skill-name">Artificial Intelligence</div>
+                </div>
+                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 0.2s;">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <div class="skill-name">Machine Learning</div>
+                </div>
+                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 0.4s;">
+                    <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="skill-name">Deep Learning</div>
+                </div>
+                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 0.6s;">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <div class="skill-name">Python</div>
+                </div>
+                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 0.8s;">
+                    <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="skill-name">Data Analysis</div>
+                </div>
+                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 1s;">
+                    <div class="skill-icon"><i class="fas fa-language"></i></div>
+                    <div class="skill-name">Natural Language Processing (NLP)</div>
+                </div>
+                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 1.2s;">
+                    <div class="skill-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <div class="skill-name">Generative AI (GenAI)</div>
+                </div>
+                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 1.4s;">
+                    <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="skill-name">Large Language Models (LLM)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Ready to start your AI journey? Get in touch with us today!</p>
+            <p>Email: <a href="mailto:aicraftalchemy@gmail.com">aicraftalchemy@gmail.com</a></p>
+            <p>Phone: +91 7661081043</p>
+            <p>Address: Hyderabad, India.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 AI Craft Alchemy. All rights reserved.</p>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Enhanced Particle.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: ["#ffffff", "#ffc107", "#3f51b5"] },
+                shape: { 
+                    type: ["circle", "triangle", "star"],
+                    stroke: { width: 0, color: "#000000" },
+                    polygon: { nb_sides: 5 },
+                },
+                opacity: { value: 0.7, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1, sync: false } },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { 
+                    enable: true, 
+                    speed: 3, 
+                    direction: "none", 
+                    random: true, 
+                    straight: false, 
+                    out_mode: "out", 
+                    bounce: false,
+                    attract: { enable: true, rotateX: 600, rotateY: 1200 }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { 
+                    onhover: { enable: true, mode: "repulse" }, 
+                    onclick: { enable: true, mode: "push" }, 
+                    resize: true 
+                },
+                modes: { 
+                    grab: { distance: 400, line_linked: { opacity: 1 } },
+                    bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+                    repulse: { distance: 200, duration: 0.4 },
+                    push: { particles_nb: 4 },
+                    remove: { particles_nb: 2 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Typing effect
+        const text = "Your Vision, Our Innovation, One Solution";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typing-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        typeWriter();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Reveal sections on scroll
+        const revealSection = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const sectionObserver = new IntersectionObserver(revealSection, {
+            root: null,
+            threshold: 0.15,
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Animate on scroll
+        const animate = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', entry.target.dataset.animation);
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const animationObserver = new IntersectionObserver(animate, {
+            root: null,
+            threshold: 0.1,
+        });
+
+        document.querySelectorAll('[data-animation]').forEach(element => {
+            animationObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
