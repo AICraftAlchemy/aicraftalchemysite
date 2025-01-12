@@ -114,7 +114,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -122,6 +122,7 @@
             color: var(--bg-color);
             position: relative;
             overflow: hidden;
+            padding: 20px;
         }
 
         #particles-js {
@@ -138,7 +139,7 @@
         }
 
         .hero h2 {
-            font-size: 3.5em;
+            font-size: 2.5em;
             margin-bottom: 20px;
             opacity: 0;
             transform: translateY(20px);
@@ -146,7 +147,7 @@
         }
 
         .hero p {
-            font-size: 1.4em;
+            font-size: 1.2em;
             margin-bottom: 30px;
             opacity: 0;
             transform: translateY(20px);
@@ -565,11 +566,11 @@
 
         @media (max-width: 768px) {
             .hero h2 {
-                font-size: 2.5em;
+                font-size: 2em;
             }
 
             .hero p {
-                font-size: 1.2em;
+                font-size: 1em;
             }
 
             nav ul {
@@ -586,6 +587,23 @@
 
             .feature-item {
                 flex-basis: 100%;
+            }
+
+            .service {
+                padding: 30px 20px;
+            }
+
+            .skill-item {
+                margin: 10px;
+                padding: 20px;
+            }
+
+            .skill-icon {
+                font-size: 2.5em;
+            }
+
+            .skill-name {
+                font-size: 1em;
             }
         }
     </style>
@@ -827,7 +845,7 @@
         });
 
         // Back to top button
-        const backToTop = document.getElementById('backToTop');
+        const backToTop = document.querySelector('#backToTop');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 backToTop.classList.add('show');
