@@ -109,18 +109,12 @@
             width: 100%;
         }
 
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5em;
-        }
-
         .hero {
             background: linear-gradient(135deg, rgba(26, 35, 126, 0.9), rgba(63, 81, 181, 0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -128,7 +122,6 @@
             color: var(--bg-color);
             position: relative;
             overflow: hidden;
-            padding: 20px;
         }
 
         #particles-js {
@@ -145,7 +138,7 @@
         }
 
         .hero h2 {
-            font-size: 2.5em;
+            font-size: 3.5em;
             margin-bottom: 20px;
             opacity: 0;
             transform: translateY(20px);
@@ -153,7 +146,7 @@
         }
 
         .hero p {
-            font-size: 1.2em;
+            font-size: 1.4em;
             margin-bottom: 30px;
             opacity: 0;
             transform: translateY(20px);
@@ -571,36 +564,16 @@
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
+            .hero h2 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
             }
 
             nav ul {
                 display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary-color);
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            }
-
-            nav ul.show {
-                display: flex;
-            }
-
-            nav ul li {
-                margin: 10px 0;
-            }
-
-            .hero h2 {
-                font-size: 2em;
-            }
-
-            .hero p {
-                font-size: 1em;
             }
 
             .about-content {
@@ -614,23 +587,6 @@
             .feature-item {
                 flex-basis: 100%;
             }
-
-            .service {
-                padding: 30px 20px;
-            }
-
-            .skill-item {
-                margin: 10px;
-                padding: 20px;
-            }
-
-            .skill-icon {
-                font-size: 2.5em;
-            }
-
-            .skill-name {
-                font-size: 1em;
-            }
         }
     </style>
 </head>
@@ -641,10 +597,7 @@
                 <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-VZLVJkeJI9RyKGq0pT9kGZG5vb6hzD.png" alt="AI Craft Alchemy Logo">
                 <h1>AI Craft Alchemy</h1>
             </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul id="nav-menu">
+            <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -854,9 +807,6 @@
         typeWriter();
 
         // Smooth scrolling for navigation links
-        document.querySelectorAll('a[I'll continue the text stream from the cut-off point:
-
-Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -877,7 +827,7 @@ Smooth scrolling for navigation links
         });
 
         // Back to top button
-        const backToTop = document.querySelector('#backToTop');
+        const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 backToTop.classList.add('show');
@@ -928,22 +878,6 @@ Smooth scrolling for navigation links
         document.querySelectorAll('[data-animation]').forEach(element => {
             animationObserver.observe(element);
         });
-
-        // Mobile menu toggle
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-        });
-
-        // Close mobile menu when a link is clicked
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('show');
-            });
-        });
     </script>
 </body>
 </html>
-
