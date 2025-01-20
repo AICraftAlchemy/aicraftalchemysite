@@ -30,6 +30,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -38,10 +39,11 @@
             padding: 0 20px;
         }
 
+        /* Header Styles */
         header {
             background-color: rgba(26, 35, 126, 0.9);
             color: var(--bg-color);
-            padding: 20px 0;
+            padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -55,6 +57,7 @@
             background-color: rgba(26, 35, 126, 0.95);
         }
 
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -64,22 +67,43 @@
         .logo {
             display: flex;
             align-items: center;
+            z-index: 1001;
         }
 
         .logo img {
-            width: 60px;
+            width: 50px;
             height: auto;
             margin-right: 10px;
         }
 
         .logo h1 {
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: 700;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--bg-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
         }
 
         nav ul {
             display: flex;
             list-style: none;
+            transition: all 0.3s ease;
         }
 
         nav ul li {
@@ -109,6 +133,47 @@
             width: 100%;
         }
 
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.3s ease;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                margin: 20px 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -5px);
+            }
+        }
+
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, rgba(26, 35, 126, 0.9), rgba(63, 81, 181, 0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
@@ -122,6 +187,7 @@
             color: var(--bg-color);
             position: relative;
             overflow: hidden;
+            padding: 0 20px;
         }
 
         #particles-js {
@@ -135,10 +201,11 @@
         .hero-content {
             position: relative;
             z-index: 1;
+            max-width: 800px;
         }
 
         .hero h2 {
-            font-size: 3.5em;
+            font-size: 3em;
             margin-bottom: 20px;
             opacity: 0;
             transform: translateY(20px);
@@ -146,13 +213,24 @@
         }
 
         .hero p {
-            font-size: 1.4em;
+            font-size: 1.3em;
             margin-bottom: 30px;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease forwards 0.7s;
         }
 
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+        }
+
+        /* Button Styles */
         .btn {
             display: inline-block;
             background-color: var(--accent-color);
@@ -191,6 +269,14 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
+        @media (max-width: 768px) {
+            .btn {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+        }
+
+        /* Main Content */
         main {
             padding: 80px 0;
         }
@@ -207,6 +293,7 @@
             transform: translateY(0);
         }
 
+        /* Section Titles */
         .section-title {
             text-align: center;
             margin-bottom: 40px;
@@ -229,6 +316,13 @@
             left: 25%;
         }
 
+        @media (max-width: 768px) {
+            .section-title h2 {
+                font-size: 2em;
+            }
+        }
+
+        /* About Section */
         .about-content {
             display: flex;
             justify-content: space-between;
@@ -260,20 +354,28 @@
             transition: all 0.5s ease;
         }
 
-        .about-image:hover img {
-            transform: scale(1.1);
-        }
-
         .about-text h3 {
             font-size: 2em;
             color: var(--primary-color);
             margin-bottom: 20px;
         }
 
-        .about-text p {
-            margin-bottom: 20px;
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                order: -1;
+                margin-bottom: 20px;
+            }
+
+            .about-text {
+                padding: 20px;
+            }
         }
 
+        /* Features */
         .about-features {
             display: flex;
             justify-content: space-between;
@@ -289,16 +391,19 @@
             transition: all 0.3s ease;
         }
 
-        .feature-item:hover {
-            transform: translateX(10px);
-        }
-
         .feature-icon {
             font-size: 1.5em;
             color: var(--accent-color);
             margin-right: 10px;
         }
 
+        @media (max-width: 768px) {
+            .feature-item {
+                flex-basis: 100%;
+            }
+        }
+
+        /* Services Section */
         .services {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -313,29 +418,7 @@
             transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .service::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .service:hover::before {
-            opacity: 1;
-            transform: translate(25%, 25%);
-        }
-
-        .service:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px var(--shadow-color);
         }
 
         .service-icon {
@@ -348,39 +431,25 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .service:hover .service-icon {
-            transform: scale(1.2) rotate(-10deg);
-        }
-
         .service h3 {
             margin-bottom: 15px;
             color: var(--primary-color);
             font-size: 1.5em;
         }
 
-        .service p {
-            color: var(--text-color);
-            font-size: 0.9em;
-            line-height: 1.6;
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
-        .service-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        @media (max-width: 768px) {
+            .services {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
 
-        .service-btn:hover {
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-        }
-
+        /* Skills Section */
         .skills {
             padding: 60px 0;
             background: linear-gradient(135deg, #f6f9fc 0%, #f1f4f8 100%);
@@ -405,37 +474,11 @@
             cursor: pointer;
         }
 
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .skill-item:hover::before {
-            opacity: 1;
-            transform: translate(25%, 25%);
-        }
-
-        .skill-item:hover {
-            transform: translateY(-15px) rotate(3deg);
-        }
-
         .skill-icon {
             font-size: 3.5em;
             color: var(--primary-color);
             margin-bottom: 15px;
             transition: all 0.5s ease;
-        }
-
-        .skill-item:hover .skill-icon {
-            transform: scale(1.2) rotate(-10deg);
-            color: var(--accent-color);
         }
 
         .skill-name {
@@ -446,11 +489,19 @@
             transition: all 0.5s ease;
         }
 
-        .skill-item:hover .skill-name {
-            opacity: 1;
-            transform: scale(1.1);
+        @media (max-width: 768px) {
+            .skill-item {
+                flex-basis: calc(50% - 40px);
+            }
         }
 
+        @media (max-width: 480px) {
+            .skill-item {
+                flex-basis: 100%;
+            }
+        }
+
+        /* Contact Section */
         .contact {
             background-color: var(--primary-color);
             color: var(--bg-color);
@@ -458,26 +509,6 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 80%);
-            animation: ripple 15s linear infinite;
-        }
-
-        @keyframes ripple {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(50%, 50%);
-            }
         }
 
         .contact h2 {
@@ -496,14 +527,19 @@
             color: var(--accent-color);
             text-decoration: none;
             transition: color 0.3s ease;
-            position: relative;
-            z-index: 1;
         }
 
         .contact a:hover {
             color: #ffd54f;
         }
 
+        @media (max-width: 768px) {
+            .contact {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Footer */
         footer {
             background-color: #0e1442;
             color: var(--bg-color);
@@ -527,6 +563,7 @@
             transform: translateY(-5px);
         }
 
+        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 20px;
@@ -544,6 +581,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
+            z-index: 999;
         }
 
         .back-to-top.show {
@@ -556,6 +594,7 @@
             transform: translateY(-5px);
         }
 
+        /* Animations */
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -563,29 +602,9 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2.5em;
-            }
-
-            .hero p {
+        @media (max-width: 480px) {
+            .logo h1 {
                 font-size: 1.2em;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            .about-content {
-                flex-direction: column;
-            }
-
-            .about-image {
-                order: -1;
-            }
-
-            .feature-item {
-                flex-basis: 100%;
             }
         }
     </style>
@@ -597,6 +616,11 @@
                 <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-VZLVJkeJI9RyKGq0pT9kGZG5vb6hzD.png" alt="AI Craft Alchemy Logo">
                 <h1>AI Craft Alchemy</h1>
             </div>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
@@ -609,10 +633,10 @@
 
     <section class="hero">
         <div id="particles-js"></div>
-        <div class="hero-content animate__animated animate__zoomIn">
+        <div class="hero-content">
             <h2 id="typing-text"></h2>
             <p>Transforming ideas into cutting-edge AI solutions</p>
-            <a href="#contact" class="btn animate__animated animate__pulse animate__infinite">Get Started</a>
+            <a href="#contact" class="btn">Get Started</a>
         </div>
     </section>
 
@@ -621,7 +645,7 @@
             <div class="section-title">
                 <h2>About Us</h2>
             </div>
-            <div class="about-content animate__animated animate__fadeIn">
+            <div class="about-content">
                 <div class="about-text">
                     <h3>Pioneering AI Solutions</h3>
                     <p>Welcome to AI Craft Alchemy, where we transform raw data into golden insights. Our team of expert alchemists specializes in the art and science of Artificial Intelligence, Machine Learning, and Deep Learning.</p>
@@ -656,75 +680,73 @@
                 <h2>Our Services</h2>
             </div>
             <div class="services">
-                <div class="service animate__animated animate__fadeInUp">
+                <div class="service">
                     <div class="service-icon"><i class="fas fa-brain"></i></div>
                     <h3>Artificial Intelligence</h3>
                     <p>We develop cutting-edge AI solutions to address your specific challenges and opportunities, leveraging the latest advancements in machine learning and deep learning.</p>
-                    <a href="ai.html" class="btn animate__animated animate__pulse animate__infinite">Learn More</a>
+                    <a href="#contact" class="btn">Learn More</a>
                 </div>
-                <div class="service animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                <div class="service">
                     <div class="service-icon"><i class="fas fa-cogs"></i></div>
                     <h3>Machine Learning</h3>
                     <p>Our machine learning services help you make data-driven decisions by extracting valuable insights from your data, enabling predictive analytics and pattern recognition.</p>
-                    <a href="ml.html" class="btn animate__animated animate__pulse animate__infinite">Learn More</a>
+                    <a href="#contact" class="btn">Learn More</a>
                 </div>
-                <div class="service animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                <div class="service">
                     <div class="service-icon"><i class="fas fa-network-wired"></i></div>
                     <h3>Deep Learning</h3>
                     <p>We utilize deep learning techniques to automate complex tasks and processes, increasing efficiency and reducing operational costs through neural network architectures.</p>
-                    <a href="#contact" class="btn animate__animated animate__pulse animate__infinite">Learn More</a>
+                    <a href="#contact" class="btn">Learn More</a>
                 </div>
-                <div class="service animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+                <div class="service">
                     <div class="service-icon"><i class="fas fa-keyboard"></i></div>
                     <h3>Prompt Engineering</h3>
                     <p>Our prompt engineering services help you create effective prompts for AI models, optimizing their performance and ensuring accurate outputs tailored to your specific use cases.</p>
-                    <a href="#contact" class="btn animate__animated animate__pulse animate__infinite">Learn More</a>
+                    <a href="#contact" class="btn">Learn More</a>
                 </div>
             </div>
         </section>
-    </main>
 
-    <section id="skills" class="skills section">
-        <div class="container">
+        <section id="skills" class="skills section">
             <div class="section-title">
                 <h2>Our Skills</h2>
             </div>
             <div class="skills-container">
-                <div class="skill-item animate__animated animate__zoomIn">
+                <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-robot"></i></div>
                     <div class="skill-name">Artificial Intelligence</div>
                 </div>
-                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 0.2s;">
+                <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-brain"></i></div>
                     <div class="skill-name">Machine Learning</div>
                 </div>
-                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 0.4s;">
+                <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
                     <div class="skill-name">Deep Learning</div>
                 </div>
-                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 0.6s;">
+                <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-code"></i></div>
                     <div class="skill-name">Python</div>
                 </div>
-                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 0.8s;">
+                <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
                     <div class="skill-name">Data Analysis</div>
                 </div>
-                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 1s;">
+                <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-language"></i></div>
-                    <div class="skill-name">Natural Language Processing (NLP)</div>
+                    <div class="skill-name">Natural Language Processing</div>
                 </div>
-                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 1.2s;">
+                <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-                    <div class="skill-name">Generative AI (GenAI)</div>
+                    <div class="skill-name">Generative AI</div>
                 </div>
-                <div class="skill-item animate__animated animate__zoomIn" style="animation-delay: 1.4s;">
+                <div class="skill-item">
                     <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
-                    <div class="skill-name">Large Language Models (LLM)</div>
+                    <div class="skill-name">Large Language Models</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <section id="contact" class="contact">
         <div class="container">
@@ -752,12 +774,29 @@
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // Enhanced Particle.js configuration
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('nav ul');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Particles.js Configuration
         particlesJS('particles-js', {
             particles: {
                 number: { value: 100, density: { enable: true, value_area: 800 } },
                 color: { value: ["#ffffff", "#ffc107", "#3f51b5"] },
-                shape: { 
+                shape: {
                     type: ["circle", "triangle", "star"],
                     stroke: { width: 0, color: "#000000" },
                     polygon: { nb_sides: 5 },
@@ -765,25 +804,25 @@
                 opacity: { value: 0.7, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
                 size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1, sync: false } },
                 line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-                move: { 
-                    enable: true, 
-                    speed: 3, 
-                    direction: "none", 
-                    random: true, 
-                    straight: false, 
-                    out_mode: "out", 
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
                     bounce: false,
                     attract: { enable: true, rotateX: 600, rotateY: 1200 }
                 }
             },
             interactivity: {
                 detect_on: "canvas",
-                events: { 
-                    onhover: { enable: true, mode: "repulse" }, 
-                    onclick: { enable: true, mode: "push" }, 
-                    resize: true 
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
                 },
-                modes: { 
+                modes: {
                     grab: { distance: 400, line_linked: { opacity: 1 } },
                     bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
                     repulse: { distance: 200, duration: 0.4 },
@@ -794,7 +833,7 @@
             retina_detect: true
         });
 
-        // Typing effect
+        // Typing Effect
         const text = "Your Vision, Our Innovation, One Solution";
         let i = 0;
         function typeWriter() {
@@ -806,7 +845,31 @@
         }
         typeWriter();
 
-        // Smooth scrolling for navigation links
+        // Scroll Effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const backToTop = document.getElementById('backToTop');
+
+            // Header scroll effect
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                backToTop.classList.add('show');
+            } else {
+                header.classList.remove('scrolled');
+                backToTop.classList.remove('show');
+            }
+
+            // Reveal sections on scroll
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -816,68 +879,10 @@
             });
         });
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
-
-        backToTop.addEventListener('click', (e) => {
+        // Back to top
+        document.getElementById('backToTop').addEventListener('click', (e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-        // Reveal sections on scroll
-        const revealSection = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        };
-
-        const sectionObserver = new IntersectionObserver(revealSection, {
-            root: null,
-            threshold: 0.15,
-        });
-
-        document.querySelectorAll('.section').forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // Animate on scroll
-        const animate = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate__animated', entry.target.dataset.animation);
-                    observer.unobserve(entry.target);
-                }
-            });
-        };
-
-        const animationObserver = new IntersectionObserver(animate, {
-            root: null,
-            threshold: 0.1,
-        });
-
-        document.querySelectorAll('[data-animation]').forEach(element => {
-            animationObserver.observe(element);
-        });
     </script>
-</body>
-</html>
+</body
