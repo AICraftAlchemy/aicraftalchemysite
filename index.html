@@ -474,11 +474,38 @@
             cursor: pointer;
         }
 
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            transition: all 0.5s ease;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .skill-item:hover::before {
+            top: 0;
+            opacity: 1;
+        }
+
         .skill-icon {
             font-size: 3.5em;
             color: var(--primary-color);
             margin-bottom: 15px;
             transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skill-name {
+            font-weight: 700;
+            font-size: 1.2I understand. I'll continue the text stream from the cut-off point, maintaining coherence and consistency with the previous content. Here's the continuation:
+
+index: 2;
         }
 
         .skill-name {
@@ -487,6 +514,13 @@
             color: var(--primary-color);
             opacity: 0.8;
             transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skill-item:hover .skill-icon,
+        .skill-item:hover .skill-name {
+            color: var(--bg-color);
         }
 
         @media (max-width: 768px) {
@@ -594,6 +628,30 @@
             transform: translateY(-5px);
         }
 
+        /* WhatsApp Button Styles */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             to {
@@ -684,13 +742,13 @@
                     <div class="service-icon"><i class="fas fa-brain"></i></div>
                     <h3>Artificial Intelligence</h3>
                     <p>We develop cutting-edge AI solutions to address your specific challenges and opportunities, leveraging the latest advancements in machine learning and deep learning.</p>
-                    <a href="#contact" class="btn">Learn More</a>
+                    <a href="ai.html" class="btn">Learn More</a>
                 </div>
                 <div class="service">
                     <div class="service-icon"><i class="fas fa-cogs"></i></div>
                     <h3>Machine Learning</h3>
                     <p>Our machine learning services help you make data-driven decisions by extracting valuable insights from your data, enabling predictive analytics and pattern recognition.</p>
-                    <a href="#contact" class="btn">Learn More</a>
+                    <a href="ml.html" class="btn">Learn More</a>
                 </div>
                 <div class="service">
                     <div class="service-icon"><i class="fas fa-network-wired"></i></div>
@@ -711,39 +769,8 @@
             <div class="section-title">
                 <h2>Our Skills</h2>
             </div>
-            <div class="skills-container">
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
-                    <div class="skill-name">Artificial Intelligence</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                    <div class="skill-name">Machine Learning</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
-                    <div class="skill-name">Deep Learning</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
-                    <div class="skill-name">Python</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
-                    <div class="skill-name">Data Analysis</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-language"></i></div>
-                    <div class="skill-name">Natural Language Processing</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-                    <div class="skill-name">Generative AI</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
-                    <div class="skill-name">Large Language Models</div>
-                </div>
+            <div id="skills-container" class="skills-container">
+                <!-- Skills will be dynamically added here by JavaScript -->
             </div>
         </section>
     </main>
@@ -770,6 +797,11 @@
 
     <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/917661081043" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -884,5 +916,32 @@
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // Skills Section
+        const skillsData = [
+            { name: "Artificial Intelligence", icon: "fas fa-robot" },
+            { name: "Machine Learning", icon: "fas fa-brain" },
+            { name: "Deep Learning", icon: "fas fa-network-wired" },
+            { name: "Python", icon: "fas fa-code" },
+            { name: "Data Analysis", icon: "fas fa-chart-bar" },
+            { name: "Natural Language Processing", icon: "fas fa-language" },
+            { name: "Generative AI", icon: "fas fa-wand-magic-sparkles" },
+            { name: "Large Language Models", icon: "fas fa-layer-group" },
+        ];
+
+        const skillsContainer = document.getElementById('skills-container');
+
+        skillsData.forEach(skill => {
+            const skillItem = document.createElement('div');
+            skillItem.className = 'skill-item';
+            skillItem.innerHTML = `
+                <div class="skill-icon">
+                    <i class="${skill.icon}"></i>
+                </div>
+                <div class="skill-name">${skill.name}</div>
+            `;
+            skillsContainer.appendChild(skillItem);
+        });
     </script>
-</body
+</body>
+</html>
